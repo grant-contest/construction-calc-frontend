@@ -2,13 +2,23 @@ import React from 'react';
 
 const Topbar = () => {
   return (
-    <div className="flex">
-      <div>Финансовые сервисы</div>
-      <div>Дома и участки</div>
-      <div>Проекты</div>
-      <div>Подрядчики</div>
-      <div className="flex">
-        Сельская ипотека <p>от 0.1%</p>
+    <div className="flex justify-center">
+      <div className="flex my-5 text-xs w-8/12">
+
+        <div className="flex justify-between text-gray-500 w-8/12">
+          <div className="mx-1">Финансовые сервисы</div>
+          <div className="mx-1">Дома и участки</div>
+          <div className="mx-1">Проекты</div>
+          <div className="mx-1">Подрядчики</div>
+          <div className="flex mx-1">
+            Сельская ипотека <p className="bg-green-600 rounded px-1 pb-0.5 mx-1 text-white">от 0.1%</p>
+          </div>
+          <div className="bg-gray-300 w-px"></div>
+          <div className="text-black mx-1">Журнал</div>
+          <div className="text-black mx-1">Партнёрам</div>
+        </div>
+
+        <div className="w-4/12 text-end">г Хабаровск</div>
       </div>
     </div>
   );
