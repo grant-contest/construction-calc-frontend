@@ -1,9 +1,10 @@
 import React from "react";
+import Topbar from "./third-party/topbar";
 
 function App() {
   return (
-    <div className="App">
-      База
+    <div>
+      <Topbar/>
     </div>
   );
 }
