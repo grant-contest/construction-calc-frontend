@@ -1,5 +1,5 @@
 import React from "react";
-import Topbar from "./third-party/topbar";
+import Topbar from "./mocks/topbar";
 
 function App() {
   return (

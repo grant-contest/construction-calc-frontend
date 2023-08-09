@@ -596,6 +596,10 @@ video {
   width: 6rem;
 }
 
+.flex-auto {
+  flex: 1 1 auto;
+}
+
 .underline {
   text-decoration-line: underline;
 }
