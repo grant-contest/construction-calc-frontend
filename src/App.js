@@ -3,14 +3,15 @@ import Topbar from "./mocks/topbar";
 import Header from "./mocks/header";
 import Footer from "./mocks/footer";
 import Range from "./components/UI/range";
+import HomeParameters from "./components/pages/page-0/homeParameters";
+import Page0 from "./components/pages/page-0/page-0";
 
 function App() {
   return (
     <div>
       <Topbar/>
       <Header/>
-      <Range title={"Площадь дома, м2"} maxValue={1000}/>
-      <Range title={"Площадь участка, сот"} maxValue={100}/>
+      <Page0/>
       <Footer/>
     </div>
   );
