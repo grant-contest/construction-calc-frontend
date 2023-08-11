@@ -3,7 +3,7 @@ import React from 'react';
 const Header = () => {
   return (
     <div className="flex justify-center border-b shadow-lg shadow-gray-100">
-      <div className="flex justify-between items-center my-5 w-8/12">
+      <div className="flex justify-between items-center my-5 w-9/12">
         <img src="https://s32640.cdn.ngenix.net/external-resources/images/logo/logo-19359685-MAIN_SELO.svg" alt=""/>
         <div className="mx-3">
           <div className="flex justify-between">
