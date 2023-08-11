@@ -26,8 +26,11 @@
 /* Chrome and Safari */
 .range::-webkit-slider-thumb {
   -webkit-appearance: none;
-  width: 10px;
-  height: 10px;
+  width: 14px;
+  height: 14px;
+  position: relative;
+  top: -4px;
+  border-radius: 100%;
   background-color: white;
   border: #42ab44 2px solid;
   cursor: pointer;
@@ -35,5 +38,6 @@
 
 .range::-webkit-slider-runnable-track {
   width: 100%;
+  height: 5px;
   background-color: #e2e4e5;
 }
