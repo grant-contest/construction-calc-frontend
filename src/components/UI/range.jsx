@@ -32,7 +32,7 @@ const Range = (props) => {
   }
 
   return (
-    <div className="border border-gray-300 rounded-xl w-full px-4 pt-2 flex flex-col mb-4">
+    <div className="border border-gray-300 rounded-xl w-full px-4 pt-1 flex flex-col mb-4">
       <p className="text-xs text-gray-500">{props.title}</p>
       <input
         type="text"
