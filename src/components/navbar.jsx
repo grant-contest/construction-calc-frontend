@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Slider = () => {
+const Navbar = () => {
   return (
     <div>
 
@@ -8,4 +8,4 @@ const Slider = () => {
   );
 };
 
-export default Slider;
+export default Navbar;

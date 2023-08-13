@@ -1,0 +1,43 @@
+.range {
+  width: 100%;
+  background-color: #42ab44;
+}
+
+/* FireFox */
+.range::-moz-range-thumb {
+  -webkit-appearance: none;
+  width: 10px;
+  height: 10px;
+  background-color: white;
+  border: #42ab44 2px solid;
+  cursor: pointer;
+}
+
+.range::-moz-range-track {
+  width: 100%;
+  background-color: #e2e4e5;
+}
+
+.range::-moz-range-progress {
+  width: 100%;
+  background-color: #42ab44;
+}
+
+/* Chrome and Safari */
+.range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  position: relative;
+  top: -4px;
+  border-radius: 100%;
+  background-color: white;
+  border: #42ab44 2px solid;
+  cursor: pointer;
+}
+
+.range::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 5px;
+  background-color: #e2e4e5;
+}
