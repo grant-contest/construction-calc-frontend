@@ -3,7 +3,7 @@ import Logo from "../components/UI/logo";
 
 const Footer = () => {
   return (
-        <footer className="footer mt-0">
+        <footer className="footer mt-0 mt-5">
           <div className="footer__content">
             <div className="footerMenu px-10 py-12"
                  style={{backgroundColor: "#f5f7f9"}}>
