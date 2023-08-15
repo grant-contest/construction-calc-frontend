@@ -636,6 +636,10 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
+.relative {
+  position: relative;
+}
+
 .mx-1 {
   margin-left: 0.25rem;
   margin-right: 0.25rem;
@@ -757,6 +761,14 @@ video {
   height: 100%;
 }
 
+.h-20 {
+  height: 5rem;
+}
+
+.h-4\/5 {
+  height: 80%;
+}
+
 .w-4\/12 {
   width: 33.333333%;
 }
@@ -781,6 +793,7 @@ video {
   width: 1px;
 }
 
+
 .w-8\/12 {
   width: 66.666667%;
 }
@@ -803,6 +816,12 @@ video {
 
 .max-w-7xl {
   max-width: 80rem;
+  
+.rotate-180 {
+  --tw-rotate: 180deg;
+  -webkit-transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+          transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+
 }
 
 .cursor-pointer {
@@ -816,6 +835,10 @@ video {
 
 .flex-col {
   flex-direction: column;
+}
+
+.items-start {
+  align-items: flex-start;
 }
 
 .items-center {
@@ -840,6 +863,13 @@ video {
 
 .justify-around {
   justify-content: space-around;
+
+.overflow-y-auto {
+  overflow-y: auto;
+}
+
+.scroll-auto {
+  scroll-behavior: auto;
 }
 
 .rounded {
@@ -908,6 +938,11 @@ video {
 .bg-light-green {
   --tw-bg-opacity: 1;
   background-color: rgb(66 171 68 / var(--tw-bg-opacity));
+}
+
+.bg-white {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
 .p-4 {
