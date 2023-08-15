@@ -1,19 +1,11 @@
 import React from 'react';
+import Logo from "../components/UI/logo";
 
 const Header = () => {
   return (
     <div className="flex justify-center border-b shadow-lg shadow-gray-100">
       <div className="flex justify-between items-center my-5 w-9/12">
-        <img src="https://s32640.cdn.ngenix.net/external-resources/images/logo/logo-19359685-MAIN_SELO.svg" alt=""/>
-        <div className="mx-3">
-          <div className="flex justify-between">
-            <div className="font-medium text-lg">Своё</div>
-            <div className="bg-gray-400 w-px"></div>
-            <div className="text-lg">Село</div>
-          </div>
-          <div className="text-xs text-gray-500">от Россельхозбанка</div>
-        </div>
-
+        <Logo/>
         <div className="flex border-2 rounded-full border-green-600 py-3 px-5">
           <img className="mr-2" src="https://s32640.cdn.ngenix.net/common/images/icons/menu-fries-right.svg" alt=""/>
           <div>Каталог</div>
