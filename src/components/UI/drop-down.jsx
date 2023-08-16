@@ -1,10 +1,17 @@
 import React, {useState} from 'react';
 
-const DropDown = ({title, options}) => {
-  let [active, setActive] = useState(false);
+const DropDown = ({title, options, onChange}) => {
+  const [active, setActive] = useState(false);
+  const [listTitle, setListTitle] = useState(title);
 
   const clickDropDown = () => {
     setActive(!active);
+  }
+
+  const clickElem = (event) => {
+    setListTitle(event.target.innerText);
+    setActive(!active);
+    onChange(event.target.innerText);
   }
 
   return (
@@ -13,7 +20,7 @@ const DropDown = ({title, options}) => {
         className="border border-gray-300 rounded-xl w-full px-4 py-3 mb-4 flex justify-between hover:border-light-green"
         onClick={clickDropDown}
       >
-        <p className="text-gray-500 text-sm">{title}</p>
+        <p className="text-gray-500 text-sm">{listTitle}</p>
         {active ?
           <img src="https://svoe-selo.ru/common/external/0b58c12cc41401006bb6.svg" alt="" className="rotate-180"/>
         :
@@ -25,7 +32,7 @@ const DropDown = ({title, options}) => {
         <div className="border border-gray-300 rounded-xl w-full px-4 py-3 mb-4 relative bg-white max-h-32 overflow-y-auto"> {/* сам список */}
           {
             options.map((region) =>
-              <div className="text-gray-500" key={options.indexOf(region)}>  {/* элемент списка */}
+              <div className="text-gray-500" key={options.indexOf(region)} onClick={clickElem}>  {/* элемент списка */}
                 {region}
               </div>
             )

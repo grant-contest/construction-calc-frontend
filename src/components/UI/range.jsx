@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-const Range = ({title, maxValue}) => {
+const Range = ({title, maxValue, onChange}) => {
   let [value, setValue] = useState(0);
 
   const isDigitsOnly = (value) => {
@@ -8,22 +8,25 @@ const Range = ({title, maxValue}) => {
   }
 
   const changeValue = (event) => {
-    console.log(event.target.value)
     const input = event.target;
 
     switch (input.type) {
       case "text":
         if (isDigitsOnly(input.value) && input.value <= maxValue) { // если в value число и оно меньше maxValue
           setValue(input.value.replace(/^0+/, ""));
+          onChange(input.value.replace(/^0+/, ""));
         } else if (isDigitsOnly(input.value) && input.value > maxValue) {  // если в value число и оно больше maxValue
           setValue(maxValue);
+          onChange(maxValue);
         } else if (input.value === "") {  // если в value пусто
           setValue(0);
+          onChange(0);
         }
         break;
 
       case "range":
         setValue(input.value);
+        onChange(input.value);
         break;
 
       default:
