@@ -12,14 +12,39 @@ const HomeParameters = () => {
       })
   }, []);
 
+  const [homeSquare, setHomeSquare] = useState(0);
+  const homeSquareHandler = (square) => {
+    setHomeSquare(square);
+  }
+
+  const [areaSquare, setAreaSquare] = useState(0);
+  const areaSquareHandler = (square) => {
+    setAreaSquare(square);
+  }
+
+  const [floor, setFloor] = useState("");
+  const floorHandler = (floorNums) => {
+    setFloor(floorNums);
+  }
+
+  const [region, setRegion] = useState("");
+  const regionHandler = (rg) => {
+    setRegion(rg);
+  }
+
+  const [goal, setGoal] = useState("");
+  const goalHandler = (g) => {
+    setGoal(g);
+  }
+
   return (
     <div className="w-4/12 border border-gray-300 rounded-xl px-8 py-10 h-full">
       <p className="font-medium mb-7">Введите параметры дома и рассчитайте затраты</p>
-      <Range title={"Площадь дома, м2"} maxValue={1000}/>
-      <Range title={"Площадь участка, сот"} maxValue={100}/>
-      <DropDown title="Количество этажей" options={["1 этаж", "2 этажа", "3 этажа"]}/>
-      <DropDown title="Регион" options={regions}/> {/* ["Алтайский край", "Амурская область", "Архангельская область"] */}
-      <DropDown title="Цель дома" options={["Постоянное место жительства", "Место отдыха, 'дача'", "Место работы"]}/>
+      <Range title={"Площадь дома, м2"} maxValue={1000} onChange={homeSquareHandler}/>
+      <Range title={"Площадь участка, сот"} maxValue={100} onChange={areaSquareHandler}/>
+      <DropDown title="Количество этажей" options={["1 этаж", "2 этажа", "3 этажа"]} onChange={floorHandler}/>
+      <DropDown title="Регион" options={regions} onChange={regionHandler}/>
+      <DropDown title="Цель дома" options={["Постоянное место жительства", "Место отдыха, 'дача'", "Место работы"]} onChange={goalHandler}/>
       <div className="flex justify-between">
         <input
             type="text"
