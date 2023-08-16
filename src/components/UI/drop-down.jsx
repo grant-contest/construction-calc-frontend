@@ -23,19 +23,8 @@ const DropDown = (props) => {
         }
       </div>
 
-      {active && props.options.length <= 3 &&
-        <div className="border border-gray-300 rounded-xl w-full px-4 py-3 mb-4 relative bg-white"> {/* сам список */}
-          {
-            props.options.map((region) =>
-              <div className="text-gray-500" key={props.options.indexOf(region)}>  {/* элемент списка */}
-                {region}
-              </div>
-            )
-          }
-        </div>
-      }
-      {active && props.options.length > 3 &&
-        <div className="border border-gray-300 rounded-xl w-full px-4 py-3 mb-4 relative bg-white h-20 overflow-y-auto"> {/* сам список */}
+      {active &&
+        <div className="border border-gray-300 rounded-xl w-full px-4 py-3 mb-4 relative bg-white max-h-32 overflow-y-auto"> {/* сам список */}
           {
             props.options.map((region) =>
               <div className="text-gray-500" key={props.options.indexOf(region)}>  {/* элемент списка */}

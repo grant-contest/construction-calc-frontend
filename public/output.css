@@ -757,6 +757,23 @@ video {
   height: 100%;
 }
 
+.max-h-full {
+  max-height: 100%;
+}
+
+.max-h-20 {
+  max-height: 5rem;
+}
+
+.max-h-32 {
+  max-height: 8rem;
+}
+
+.min-h-min {
+  min-height: -webkit-min-content;
+  min-height: min-content;
+}
+
 .w-10\/12 {
   width: 83.333333%;
 }
