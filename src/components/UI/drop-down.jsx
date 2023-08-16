@@ -1,8 +1,6 @@
 import React, {useState} from 'react';
-import axios from "axios";
 
-const DropDown = (props) => {
-  let [dropDownTitle, setDropDownTitle] = useState(props.title);
+const DropDown = ({title, options}) => {
   let [active, setActive] = useState(false);
 
   const clickDropDown = () => {
@@ -15,7 +13,7 @@ const DropDown = (props) => {
         className="border border-gray-300 rounded-xl w-full px-4 py-3 mb-4 flex justify-between hover:border-light-green"
         onClick={clickDropDown}
       >
-        <p className="text-gray-500 text-sm">{dropDownTitle}</p>
+        <p className="text-gray-500 text-sm">{title}</p>
         {active ?
           <img src="https://svoe-selo.ru/common/external/0b58c12cc41401006bb6.svg" alt="" className="rotate-180"/>
         :
@@ -23,22 +21,11 @@ const DropDown = (props) => {
         }
       </div>
 
-      {active && props.options.length <= 3 &&
-        <div className="border border-gray-300 rounded-xl w-full px-4 py-3 mb-4 relative bg-white"> {/* сам список */}
+      {active &&
+        <div className="border border-gray-300 rounded-xl w-full px-4 py-3 mb-4 relative bg-white max-h-32 overflow-y-auto"> {/* сам список */}
           {
-            props.options.map((region) =>
-              <div className="text-gray-500" key={props.options.indexOf(region)}>  {/* элемент списка */}
-                {region}
-              </div>
-            )
-          }
-        </div>
-      }
-      {active && props.options.length > 3 &&
-        <div className="border border-gray-300 rounded-xl w-full px-4 py-3 mb-4 relative bg-white h-20 overflow-y-auto"> {/* сам список */}
-          {
-            props.options.map((region) =>
-              <div className="text-gray-500" key={props.options.indexOf(region)}>  {/* элемент списка */}
+            options.map((region) =>
+              <div className="text-gray-500" key={options.indexOf(region)}>  {/* элемент списка */}
                 {region}
               </div>
             )

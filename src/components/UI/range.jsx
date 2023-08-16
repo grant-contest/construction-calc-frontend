@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-const Range = (props) => {
+const Range = ({title, maxValue}) => {
   let [value, setValue] = useState(0);
 
   const isDigitsOnly = (value) => {
@@ -13,10 +13,10 @@ const Range = (props) => {
 
     switch (input.type) {
       case "text":
-        if (isDigitsOnly(input.value) && input.value <= props.maxValue) { // если в value число и оно меньше maxValue
+        if (isDigitsOnly(input.value) && input.value <= maxValue) { // если в value число и оно меньше maxValue
           setValue(input.value.replace(/^0+/, ""));
-        } else if (isDigitsOnly(input.value) && input.value > props.maxValue) {  // если в value число и оно больше maxValue
-          setValue(props.maxValue);
+        } else if (isDigitsOnly(input.value) && input.value > maxValue) {  // если в value число и оно больше maxValue
+          setValue(maxValue);
         } else if (input.value === "") {  // если в value пусто
           setValue(0);
         }
@@ -33,7 +33,7 @@ const Range = (props) => {
 
   return (
     <div className="border border-gray-300 rounded-xl w-full px-4 pt-1 flex flex-col mb-4">
-      <p className="text-xs text-gray-500">{props.title}</p>
+      <p className="text-xs text-gray-500">{title}</p>
       <input
         type="text"
         className="text-sm"
@@ -43,7 +43,7 @@ const Range = (props) => {
       <input
         type="range"
         min="0"
-        max={props.maxValue}
+        max={maxValue}
         onChange={changeValue}
         value={value}
         className="w-full h-1 mt-2 bg-light-green rounded-full appearance-none cursor-pointer range"/>
