@@ -12,4 +12,4 @@
 
 ---
 
-### Репозиторий бэкенда: (будет)
+### [Репозиторий бэкенда](https://github.com/grant-contest/construction-calc-backend)
