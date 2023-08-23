@@ -25,6 +25,7 @@ function App() {
         <Route path="/page-7" element={<p>Page 7</p>}/>
         <Route path="/page-8" element={<p>Page 8</p>}/>
         <Route path="/page-9" element={<p>Page 9</p>}/>
+        <Route path="/page-9" element={<p>Итог</p>}/>
       </Routes>
 
       <Footer/>
