@@ -1,7 +1,11 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
-const Range = ({title, maxValue, onChange}) => {
+const Range = ({title, maxValue, onChange, initValue}) => {
   let [value, setValue] = useState(0);
+
+  useEffect(() => {
+    setValue(Number(initValue))
+  }, [initValue]);
 
   const isDigitsOnly = (value) => {
     return /^\d+$/.test(value);
