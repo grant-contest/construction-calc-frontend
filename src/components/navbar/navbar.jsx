@@ -4,7 +4,7 @@ import NavbarRow from "./navbarRow";
 
 const Navbar = () => {
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center py-5">
       <div className="flex w-9/12 justify-between items-center">
         <NavbarButton page={"https://s32640.cdn.ngenix.net/images/build-house/steps/active/first-icon.svg"} url={""} completed={true}/>
         <NavbarRow/>

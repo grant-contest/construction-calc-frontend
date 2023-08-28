@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
+import React from 'react';
 import HomeParameters from "./homeParameters";
 
 const Page0 = () => {
-  const [homeParams, setHomeParams] = useState({
+  const homeParams = {
     homeSquare: 0,
     areaSquare: 0,
     floor: "",
@@ -10,12 +10,18 @@ const Page0 = () => {
     goal: "",
     budgetFrom: 0,
     budgetUpto: 0,
-  })
+  }
+
   const homeParamsHandler = (hp) => {
-    setHomeParams(hp);
-    setTimeout(() => {
-      console.log(homeParams)
-    }, 1000)
+    homeParams.homeSquare = hp.homeSquare;
+    homeParams.areaSquare = hp.areaSquare;
+    homeParams.floor = hp.floor;
+    homeParams.region = hp.region;
+    homeParams.goal = hp.goal;
+    homeParams.budgetFrom = hp.budgetFrom;
+    homeParams.budgetUpto = hp.budgetUpto;
+
+    localStorage.setItem("homeParams", JSON.stringify(homeParams))
   }
   return (
     <div className="flex justify-center">

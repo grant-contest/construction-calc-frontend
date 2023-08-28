@@ -6,12 +6,6 @@ import Input from "../../UI/input";
 
 const HomeParameters = ({onChange}) => {
   const [regions, setRegions] = useState([]);
-  useEffect(() => {
-    axios.get('http://localhost:8000/api/regions')
-      .then((response) => {
-        setRegions(response.data);
-      })
-  }, []);
 
   const [homeSquare, setHomeSquare] = useState(0);
   const homeSquareHandler = (square) => {
@@ -48,6 +42,26 @@ const HomeParameters = ({onChange}) => {
     setBudgetUpto(budget);
   }
 
+  useEffect(() => {
+    axios.get('http://localhost:8000/api/regions')
+      .then((response) => {
+        setRegions(response.data);
+      })
+
+    const homeParams = JSON.parse(localStorage.getItem("homeParams"));
+    if (homeParams) {
+      setHomeSquare(homeParams.homeSquare);
+      setAreaSquare(homeParams.areaSquare);
+      setFloor(homeParams.floor);
+      setRegion(homeParams.region);
+      setGoal(homeParams.goal);
+      setBudgetFrom(homeParams.budgetFrom);
+      setBudgetUpto(homeParams.budgetUpto);
+    }
+  }, []);
+
+
+
   const saveParams = () => {
     onChange({
       homeSquare,
@@ -70,23 +84,24 @@ const HomeParameters = ({onChange}) => {
             :
             <img src="https://s32640.cdn.ngenix.net/images/build-house/footage/1/build-house-step-0.svg" alt=""/>
       }
-      <div className="w-4/12 border border-gray-300 rounded-xl px-8 py-10 h-full">
+      <div className="w-5/12 border border-gray-300 rounded-xl px-8 py-10 h-full">
         <p className="font-medium mb-7">Введите параметры дома и рассчитайте затраты</p>
-        <Range title={"Площадь дома, м2"} maxValue={1000} onChange={homeSquareHandler}/>
-        <Range title={"Площадь участка, сот"} maxValue={100} onChange={areaSquareHandler}/>
-        <DropDown title="Количество этажей" options={["1 этаж", "2 этажа", "3 этажа"]} onChange={floorHandler}/>
-        <DropDown title="Регион" options={regions} onChange={regionHandler}/>
+        <Range title={"Площадь дома, м2"} maxValue={1000} onChange={homeSquareHandler} initValue={homeSquare}/>
+        <Range title={"Площадь участка, сот"} maxValue={100} onChange={areaSquareHandler} initValue={areaSquare}/>
+        <DropDown title="Количество этажей" options={["1 этаж", "2 этажа", "3 этажа"]} onChange={floorHandler} initValue={floor}/>
+        <DropDown title="Регион" options={regions} onChange={regionHandler} initValue={region}/>
         <DropDown title="Цель дома" options={["Постоянное место жительства", "Место отдыха, 'дача'", "Место работы"]}
-                  onChange={goalHandler}/>
+                  onChange={goalHandler} initValue={goal}/>
         <div className="flex justify-between">
-          <Input placeholder={"Бюджет от"} onChange={budgetFromHandler}/>
-          <Input placeholder={"до, руб"} onChange={budgetUptoHandler}/>
+          <Input placeholder={"Бюджет от"} onChange={budgetFromHandler} initValue={budgetFrom}/>
+          <Input placeholder={"до, руб"} onChange={budgetUptoHandler} initValue={budgetUpto}/>
         </div>
+        <button className="rounded-full bg-light-green text-white px-4 py-2 mt-2 mb-4" onClick={saveParams}>Рассчитать
+        </button>
         <p className="text-xs text-stone-400 w-7/12">
           Онлайн-калькулятор строительства покажет приблизительную цену
           постройки дома с учётом расходных материалов
         </p>
-        <button className="rounded-xl bg-light-green text-white px-4 py-2 mt-2" onClick={saveParams}>Дальше</button>
       </div>
     </div>
   );

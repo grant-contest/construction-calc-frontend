@@ -1,7 +1,11 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
-const Input = ({placeholder, onChange}) => {
+const Input = ({placeholder, onChange, initValue}) => {
   let [value, setValue] = useState("");
+
+  useEffect(() => {
+    setValue(initValue);
+  }, [initValue]);
 
   const isDigitsOnly = (value) => {
     return /^\d+$/.test(value);

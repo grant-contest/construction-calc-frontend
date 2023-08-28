@@ -1,17 +1,25 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
-const DropDown = ({title, options, onChange}) => {
+const DropDown = ({title, options, onChange, initValue}) => {
   const [active, setActive] = useState(false);
   const [listTitle, setListTitle] = useState(title);
+
+  useEffect(() => {
+    if (initValue) {
+      setListTitle(initValue);
+      setActive(false);
+    }
+  }, [initValue]);
 
   const clickDropDown = () => {
     setActive(!active);
   }
 
   const clickElem = (event) => {
-    setListTitle(event.target.innerText);
+    const value = event.target.innerText;
     setActive(!active);
-    onChange(event.target.innerText);
+    setListTitle(value);
+    onChange(value);
   }
 
   return (
