@@ -12,7 +12,7 @@ const Page2 = () => {
     if (storageJobs) {
       setJobs(JSON.parse(storageJobs));
     } else {
-      axios.get('http://localhost:8000/api/site-preparation-jobs')
+      axios.get('http://localhost:8000/api/site-preparation-works')
         .then((response) => {
           setJobs(response.data);
         })
@@ -29,9 +29,6 @@ const Page2 = () => {
     }
   }, []);
 
-  const getJobs = () => {
-  }
-
   const save = () => {
     localStorage.setItem("sitePreparation", JSON.stringify(jobs))
     localStorage.setItem("baseTypes", JSON.stringify(bases))
@@ -45,7 +42,8 @@ const Page2 = () => {
 
         <button className="rounded-full bg-light-green text-white px-4 py-2 mt-2 mb-4"
                 onClick={save}
-        >Далее
+        >
+          Далее
         </button>
       </div>
     </div>
