@@ -57,10 +57,10 @@ const CheckboxGroup = ({list}) => {
         }
       </div>
 
-      {checked ?
-        <OptionalWork works={state}/>
-        : <div></div>
-      }
+      {/*{checked ?*/}
+      {/*  <OptionalWork works={state} isNecessary={false}/>*/}
+      {/*  : <div></div>*/}
+      {/*}*/}
     </div>
   );
 };

@@ -49,7 +49,7 @@ const RadioGroup = ({list}) => {
         }
       </div>
 
-      <OptionalWork works={list}/>
+      <OptionalWork works={list} isNecessary={true}/>
     </div>
   );
 };

@@ -1,16 +1,28 @@
 import React, {useEffect, useState} from 'react';
 
-const OptionalWork = ({works}) => {
+const OptionalWork = ({works, isNecessary}) => {
   const [active, setActive] = useState(true);
 
   const changeActive = () => {
     setActive(!active);
+
+    works.map((work) => {
+      work.works.map((item) => {
+        item.materials.map((material) => {
+          console.log(material.name)
+        })
+      })
+    })
   }
 
   return (
     <div className="mx-2">
       <div className="flex justify-between">
-        <p>Необязательные работы</p>
+        {isNecessary ?
+          <p>Обязательные работы</p>
+          :
+          <p>Необязательные работы</p>
+        }
         {active ?
           <img src="https://svoe-selo.ru/common/external/0b58c12cc41401006bb6.svg" alt="" className="rotate-180"
                onClick={changeActive}/>
@@ -36,11 +48,20 @@ const OptionalWork = ({works}) => {
                       <p>{item.name}</p>
                       <p>{item.price} ₽</p>
                     </div>
-                    <div className="flex justify-between items-center">
-                      <p>Не требуется</p>
-                      <p>0 ₽</p>
+
+                    <div>
+                      {
+                        item.materials.map((material) =>
+                          <div key={material.name}
+                               className="flex justify-between items-center">
+                            <p>{material.name}</p>
+                            <p>{material.price} ₽</p>
+                          </div>
+                        )
+                      }
                     </div>
                   </div>
+
                   : <div key={item.name}></div>
               ))
           }
