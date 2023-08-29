@@ -1,13 +1,7 @@
-import React, {useEffect, useState} from 'react';
-import dropDown from "./drop-down";
+import React, {useState} from 'react';
 import OptionalWork from "./optionalWork";
 
 const CheckboxGroup = ({list}) => {
-  const [state, setState] = useState(list);
-  const [checked, setChecked] = useState(list.find((obj) => {
-    return obj.checked === true;
-  }))
-
   const [change, setChange] = useState(0);
   const changeCrutch = () => {
     setChange(change + 1)
@@ -22,11 +16,6 @@ const CheckboxGroup = ({list}) => {
       return obj.id === event.currentTarget.id;
     })
     res.checked = !res.checked;
-    setState(list);
-
-    setChecked(list.find((obj) => {
-      return obj.checked === true;
-    }))
 
     changeCrutch(); // wtf ???
   }
@@ -57,10 +46,7 @@ const CheckboxGroup = ({list}) => {
         }
       </div>
 
-      {checked ?
-        <OptionalWork works={state}/>
-        : <div></div>
-      }
+      <OptionalWork works={list} isNecessary={false}/>
     </div>
   );
 };
