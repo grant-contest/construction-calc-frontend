@@ -1,18 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 
 const OptionalWork = ({works, isNecessary}) => {
   const [active, setActive] = useState(true);
 
   const changeActive = () => {
     setActive(!active);
-
-    works.map((work) => {
-      work.works.map((item) => {
-        item.materials.map((material) => {
-          console.log(material.name)
-        })
-      })
-    })
   }
 
   return (
