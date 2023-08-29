@@ -5,6 +5,7 @@ import Footer from "./mocks/footer";
 import Page0 from "./components/pages/page-0/page-0";
 import {Route, Routes} from "react-router-dom";
 import Navbar from "./components/navbar/navbar";
+import Page2 from "./components/pages/page-2/page-2";
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Page0/>}/>
         <Route path="/page-1" element={<p>Page 1</p>}/>
-        <Route path="/page-2" element={<p>Page 2</p>}/>
+        <Route path="/page-2" element={<Page2/>}/>
         <Route path="/page-3" element={<p>Page 3</p>}/>
         <Route path="/page-4" element={<p>Page 4</p>}/>
         <Route path="/page-5" element={<p>Page 5</p>}/>
