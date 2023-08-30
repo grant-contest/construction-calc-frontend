@@ -7,6 +7,7 @@ import {Route, Routes} from "react-router-dom";
 import Navbar from "./components/navbar/navbar";
 import Page2 from "./components/pages/page-2/page-2";
 import Page1 from "./components/pages/page-1/page-1";
+import Page3 from "./components/pages/page-3/page-3";
 
 
 function App() {
@@ -21,7 +22,7 @@ function App() {
         <Route path="/" element={<Page0/>}/>
         <Route path="/page-1" element={<Page1/>}/>
         <Route path="/page-2" element={<Page2/>}/>
-        <Route path="/page-3" element={<p>Page 3</p>}/>
+        <Route path="/page-3" element={<Page3/>}/>
         <Route path="/page-4" element={<p>Page 4</p>}/>
         <Route path="/page-5" element={<p>Page 5</p>}/>
         <Route path="/page-6" element={<p>Page 6</p>}/>
