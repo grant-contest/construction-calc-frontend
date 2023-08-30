@@ -38,6 +38,7 @@ const Page2 = () => {
   const save = () => {
     localStorage.setItem("sitePreparation", JSON.stringify(jobs))
     localStorage.setItem("baseTypes", JSON.stringify(bases))
+    localStorage.setItem("page-2-cost", JSON.stringify(cost))
   }
 
   const calculateCost = (price) => {
