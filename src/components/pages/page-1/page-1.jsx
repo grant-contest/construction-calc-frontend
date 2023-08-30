@@ -27,6 +27,8 @@ const Page1 = () => {
   const [jobs, setJobs] = useState([]);
   const [worksSite, setWorksSite] = useState([]);
   const [design, setDesign] = useState([]);
+  const [cost, setCost] = useState(0);
+  let intermediateCost = 0;
 
   useEffect(() => {
     // site-preparation-works
@@ -35,6 +37,7 @@ const Page1 = () => {
     const storageJobs = localStorage.getItem("sitePreparationWorks");
     if (storageJobs) {
       setJobs(JSON.parse(storageJobs));
+      intermediateCost += incrementIntermediateCost(JSON.parse(storageJobs));
     } else {
       axios.get('http://localhost:8000/api/site-preparation-works')
         .then((response) => {
@@ -61,6 +64,8 @@ const Page1 = () => {
             setDesign(response.data);
           })
     }
+
+    setCost(intermediateCost);
   }, []);
 
   const save = () => {
@@ -69,12 +74,42 @@ const Page1 = () => {
     localStorage.setItem("designAndProjectOfTheHouse", JSON.stringify(design))
   }
 
+  const calculateCost = (price) => {
+    setCost(cost + price);
+  }
+
+  const incrementIntermediateCost = (list) => {
+    let intermediateCost = 0;
+    for (let item of list) {
+      if (item.checked) {
+        for (let work of item.works) {
+          intermediateCost += work.price;
+        }
+      }
+    }
+    return intermediateCost;
+  }
+
+  const decrementIntermediateCost = (list) => {
+    let intermediateCost = 0;
+    for (let item of list) {
+      if (item.checked) {
+        for (let work of item.works) {
+          intermediateCost -= work.price;
+        }
+      }
+    }
+    return intermediateCost;
+  }
+
   return (
     <div className="flex justify-center">
       <div className="w-11/12">
-        <CheckboxGroup list={jobs}/>
-        <CheckboxGroup list={worksSite}/>
-        <CheckboxGroup list={design}/>
+        <p>Промежуточная стоимость {cost} ₽</p>
+
+        <CheckboxGroup list={jobs} onChange={calculateCost}/>
+        <CheckboxGroup list={worksSite} onChange={calculateCost}/>
+        <CheckboxGroup list={design} onChange={calculateCost}/>
 
 
         <button className="rounded-full bg-light-green text-white px-4 py-2 mt-2 mb-4"
