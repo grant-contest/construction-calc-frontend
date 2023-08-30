@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import OptionalWork from "./optionalWork";
 
-const RadioGroup = ({list}) => {
+const RadioGroup = ({list, onChange}) => {
   const [change, setChange] = useState(0);
   const changeCrutch = () => {
     setChange(change + 1)
@@ -16,9 +16,22 @@ const RadioGroup = ({list}) => {
       item.checked = item.id === radio[0].id;
     }
 
+    let intermediateCost = 0;
     for (let item of list) {
+      if (item.checked && item.id !== radio[0].id) {
+        for (let work of item.works) {
+          intermediateCost -= work.price;
+        }
+      }
+      if (!item.checked && item.id === radio[0].id) {
+        for (let work of item.works) {
+          intermediateCost += work.price;
+        }
+      }
       item.checked = item.id === radio[0].id;
     }
+    console.log(intermediateCost);
+    onChange(intermediateCost);
 
     changeCrutch(); // wtf ???
   }
