@@ -4,23 +4,11 @@ import axios from "axios";
 import RadioGroup from "../../UI/radioGroup";
 
 const Page2 = () => {
-  const [jobs, setJobs] = useState([]);
   const [bases, setBases] = useState([]);
   const [cost, setCost] = useState(0);
   let intermediateCost = 0;
 
   useEffect(() => {
-    const storageJobs = localStorage.getItem("sitePreparation");
-    if (storageJobs) {
-      setJobs(JSON.parse(storageJobs));
-      intermediateCost += incrementIntermediateCost(JSON.parse(storageJobs));
-    } else {
-      axios.get('http://localhost:8000/api/site-preparation-works')
-        .then((response) => {
-          setJobs(response.data);
-        })
-    }
-
     const storageBases = localStorage.getItem("baseTypes");
     if (storageBases) {
       setBases(JSON.parse(storageBases));
@@ -36,7 +24,6 @@ const Page2 = () => {
   }, []);
 
   const save = () => {
-    localStorage.setItem("sitePreparation", JSON.stringify(jobs))
     localStorage.setItem("baseTypes", JSON.stringify(bases))
   }
 
@@ -74,7 +61,6 @@ const Page2 = () => {
       <div className="w-11/12">
         <p>Промежуточная стоимость {cost} ₽</p>
 
-        <CheckboxGroup list={jobs} onChange={calculateCost}/>
         <RadioGroup list={bases} onChange={calculateCost}/>
 
         <button className="rounded-full bg-light-green text-white px-4 py-2 mt-2 mb-4"
