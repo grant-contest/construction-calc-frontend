@@ -1,5 +1,6 @@
 import React from 'react';
 import HomeParameters from "./homeParameters";
+import axios from "axios";
 
 const Page0 = () => {
   const homeParams = {
@@ -22,6 +23,13 @@ const Page0 = () => {
     homeParams.budgetUpto = hp.budgetUpto;
 
     localStorage.setItem("homeParams", JSON.stringify(homeParams))
+
+    axios.post("http://localhost:8000/api/recommedation-system/step1", {
+      homeParams
+    })
+      .then((response) => {
+        console.log(response);
+      })
   }
   return (
     <div className="flex justify-center">
