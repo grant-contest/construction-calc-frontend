@@ -1,6 +1,6 @@
 import React from 'react';
 
-const PagesHeader = () => {
+const PageHeader = () => {
   return (
       <div style={{backgroundColor: "#4e4f50"}}>
         <div className="flex justify-start pt-6 px-20">
@@ -17,4 +17,4 @@ const PagesHeader = () => {
   );
 };
 
-export default PagesHeader;
+export default PageHeader;

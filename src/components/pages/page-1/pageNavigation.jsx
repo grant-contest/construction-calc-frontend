@@ -1,6 +1,6 @@
 import React from 'react';
 
-const PagesNavigation = () => {
+const PageNavigation = () => {
   return (
       <div>
         {/* Вставить нормальные изображения, сделать круглешки вокруг */}
@@ -21,4 +21,4 @@ const PagesNavigation = () => {
   );
 };
 
-export default PagesNavigation;
+export default PageNavigation;
