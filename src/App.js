@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import Topbar from "./mocks/topbar";
 import Header from "./mocks/header";
 import Footer from "./mocks/footer";
@@ -11,6 +11,8 @@ import Page3 from "./components/pages/page-3/page-3";
 
 
 function App() {
+  const [recommendation, setRecommendation] = useState();
+
   return (
     <div>
       <Topbar/>
@@ -19,8 +21,8 @@ function App() {
       <Navbar/>
 
       <Routes>
-        <Route path="/" element={<Page0/>}/>
-        <Route path="/page-1" element={<Page1/>}/>
+        <Route path="/" element={<Page0 setRec={setRecommendation}/>}/>
+        <Route path="/page-1" element={<Page1 rec={recommendation} setRec={setRecommendation}/>}/>
         <Route path="/page-2" element={<Page2/>}/>
         <Route path="/page-3" element={<Page3/>}/>
         <Route path="/page-4" element={<p>Page 4</p>}/>

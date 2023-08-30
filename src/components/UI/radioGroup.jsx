@@ -30,7 +30,6 @@ const RadioGroup = ({list, onChange}) => {
       }
       item.checked = item.id === radio[0].id;
     }
-    console.log(intermediateCost);
     onChange(intermediateCost);
 
     changeCrutch(); // wtf ???
