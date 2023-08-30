@@ -23,7 +23,7 @@ import React, {useEffect, useState} from 'react';
 import CheckboxGroup from "../../UI/checkboxGroup";
 import axios from "axios";
 
-const Page1 = () => {
+const Page1 = ({rec, setRec}) => {
   const [jobs, setJobs] = useState([]);
   const [worksSite, setWorksSite] = useState([]);
   const [design, setDesign] = useState([]);
@@ -34,44 +34,106 @@ const Page1 = () => {
     // site-preparation-works
     // works-on-the-site
     // design-and-project-of-the-house
-    const storageJobs = localStorage.getItem("sitePreparationWorks");
+    const storageJobs = JSON.parse(localStorage.getItem("sitePreparationWorks"));
     if (storageJobs) {
-      setJobs(JSON.parse(storageJobs));
-      intermediateCost += incrementIntermediateCost(JSON.parse(storageJobs));
+      if (rec) {
+        storageJobs[0].isRecommended = rec.sitePreparation.siteChoosing
+        storageJobs[1].isRecommended = rec.sitePreparation.geodeticalWorks
+        storageJobs[2].isRecommended = rec.sitePreparation.geologicalWorks
+        storageJobs[3].isRecommended = rec.sitePreparation.cuttingBushesAndSmallForests || rec.sitePreparation.clearingTheSiteOfDebris;
+      }
+      setJobs(storageJobs);
+      intermediateCost += incrementIntermediateCost(storageJobs);
     } else {
       axios.get('http://localhost:8000/api/site-preparation-works')
         .then((response) => {
+          if (rec) {
+            response.data[0].isRecommended = rec.sitePreparation.siteChoosing
+            response.data[1].isRecommended = rec.sitePreparation.geodeticalWorks
+            response.data[2].isRecommended = rec.sitePreparation.geologicalWorks
+            response.data[3].isRecommended = rec.sitePreparation.cuttingBushesAndSmallForests || rec.sitePreparation.clearingTheSiteOfDebris;
+          }
           setJobs(response.data);
         })
     }
 
-    const storageWorksSite = localStorage.getItem("worksOnTheSite");
+    const storageWorksSite = JSON.parse(localStorage.getItem("worksOnTheSite"));
     if (storageWorksSite) {
-      setWorksSite(JSON.parse(storageWorksSite));
+      if (rec) {
+        storageWorksSite[0].isRecommended = rec.siteWorks.cameras
+        storageWorksSite[1].isRecommended = rec.siteWorks.temporaryFence
+      }
+      setWorksSite(storageWorksSite);
     } else {
       axios.get('http://localhost:8000/api/works-on-the-site')
         .then((response) => {
+          if (rec) {
+            response.data[0].isRecommended = rec.siteWorks.cameras
+            response.data[1].isRecommended = rec.siteWorks.temporaryFence
+          }
           setWorksSite(response.data);
         })
     }
 
-    const storageDesign = localStorage.getItem("designAndProjectOfTheHouse");
+    const storageDesign = JSON.parse(localStorage.getItem("designAndProjectOfTheHouse"));
     if (storageDesign) {
-      setDesign(JSON.parse(storageDesign));
+      if (rec) {
+        storageDesign[0].isRecommended = rec.houseDesignAndProject.homeProject
+        storageDesign[1].isRecommended = rec.houseDesignAndProject.designProject
+      }
+      setDesign(storageDesign);
     } else {
       axios.get('http://localhost:8000/api/design-and-project-of-the-house')
-          .then((response) => {
-            setDesign(response.data);
-          })
+        .then((response) => {
+          if (rec) {
+            response.data[0].isRecommended = rec.houseDesignAndProject.homeProject
+            response.data[1].isRecommended = rec.houseDesignAndProject.designProject
+          }
+          setDesign(response.data);
+        })
     }
 
     setCost(intermediateCost);
-  }, []);
+  }, [rec]);
 
   const save = () => {
     localStorage.setItem("sitePreparationWorks", JSON.stringify(jobs))
     localStorage.setItem("worksOnTheSite", JSON.stringify(worksSite))
     localStorage.setItem("designAndProjectOfTheHouse", JSON.stringify(design))
+
+    const homeParams = JSON.parse(localStorage.getItem("homeParams"));
+    step1Join(jobs, worksSite, design);
+
+    localStorage.setItem("step1", JSON.stringify(step1))
+
+    axios.post("http://localhost:8000/api/recommedation-system/step2", {
+      homeParams,
+      step1,
+    })
+      .then((response) => {
+        console.log(response.data);
+      })
+  }
+
+  let step1 = {}
+  const step1Join = (jobs, worksite, design) => {
+    step1 = {
+      sitePreparation: {
+        siteChoosing: jobs[0].checked,
+        geologicalWorks: jobs[1].checked,
+        geodeticalWorks: jobs[2].checked,
+        cuttingBushesAndSmallForests: jobs[3].checked,
+        clearingTheSiteOfDebris: jobs[3].checked,
+      },
+      SiteWorks: {
+        cameras: worksite[0].checked,
+        temporaryFence: worksite[0].checked,
+      },
+      HouseDesignAndProject: {
+        homeProject: design[0].checked,
+        designProject: design[1].checked,
+      }
+    }
   }
 
   const calculateCost = (price) => {

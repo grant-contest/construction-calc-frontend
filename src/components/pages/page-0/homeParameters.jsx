@@ -3,6 +3,7 @@ import Range from "../../UI/range";
 import DropDown from "../../UI/drop-down";
 import axios from "axios";
 import Input from "../../UI/input";
+import {Link} from "react-router-dom";
 
 const HomeParameters = ({onChange}) => {
   const [regions, setRegions] = useState([]);
@@ -61,7 +62,6 @@ const HomeParameters = ({onChange}) => {
   }, []);
 
 
-
   const saveParams = () => {
     onChange({
       homeSquare,
@@ -88,7 +88,8 @@ const HomeParameters = ({onChange}) => {
         <p className="font-medium mb-7">Введите параметры дома и рассчитайте затраты</p>
         <Range title={"Площадь дома, м2"} maxValue={1000} onChange={homeSquareHandler} initValue={homeSquare}/>
         <Range title={"Площадь участка, сот"} maxValue={100} onChange={areaSquareHandler} initValue={areaSquare}/>
-        <DropDown title="Количество этажей" options={["1 этаж", "2 этажа", "3 этажа"]} onChange={floorHandler} initValue={floor}/>
+        <DropDown title="Количество этажей" options={["1 этаж", "2 этажа", "3 этажа"]} onChange={floorHandler}
+                  initValue={floor}/>
         <DropDown title="Регион" options={regions} onChange={regionHandler} initValue={region}/>
         <DropDown title="Цель дома" options={["Постоянное место жительства", "Место отдыха, 'дача'", "Место работы"]}
                   onChange={goalHandler} initValue={goal}/>
@@ -96,8 +97,10 @@ const HomeParameters = ({onChange}) => {
           <Input placeholder={"Бюджет от"} onChange={budgetFromHandler} initValue={budgetFrom}/>
           <Input placeholder={"до, руб"} onChange={budgetUptoHandler} initValue={budgetUpto}/>
         </div>
-        <button className="rounded-full bg-light-green text-white px-4 py-2 mt-2 mb-4" onClick={saveParams}>Рассчитать
-        </button>
+        <Link to={"page-1"}>
+          <button className="rounded-full bg-light-green text-white px-4 py-2 mt-2 mb-4" onClick={saveParams}>Рассчитать
+          </button>
+        </Link>
         <p className="text-xs text-stone-400 w-7/12">
           Онлайн-калькулятор строительства покажет приблизительную цену
           постройки дома с учётом расходных материалов

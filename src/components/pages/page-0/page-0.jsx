@@ -2,7 +2,7 @@ import React from 'react';
 import HomeParameters from "./homeParameters";
 import axios from "axios";
 
-const Page0 = () => {
+const Page0 = ({setRec}) => {
   const homeParams = {
     homeSquare: 0,
     areaSquare: 0,
@@ -28,7 +28,8 @@ const Page0 = () => {
       homeParams
     })
       .then((response) => {
-        console.log(response);
+        localStorage.setItem("rec-step1", JSON.stringify(response.data))
+        setRec(response.data);
       })
   }
   return (

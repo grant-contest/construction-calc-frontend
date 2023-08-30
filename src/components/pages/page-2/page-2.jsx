@@ -25,9 +25,35 @@ const Page2 = () => {
   const save = () => {
     localStorage.setItem("baseTypes", JSON.stringify(bases))
     localStorage.setItem("page-2-cost", JSON.stringify(cost))
+
+    step2Join(bases);
+    localStorage.setItem("step2", JSON.stringify(step2));
+
+    const homeParams = JSON.parse(localStorage.getItem("homeParams"));
+    const step1 = JSON.parse(localStorage.getItem("step1"));
+
+    axios.post("http://localhost:8000/api/recommedation-system/step3", {
+      homeParams,
+      step1,
+      step2,
+    })
+      .then((response) => {
+        console.log(response.data);
+      })
   }
 
-  const calculateCost = (price) => {
+  let step2 = {};
+  const step2Join = (bases) => {
+    for (let base of bases) {
+      if (base.checked) {
+        step2 = {
+          foundationType: base.title,
+        }
+      }
+    }
+  }
+
+    const calculateCost = (price) => {
     setCost(cost + price);
   }
 
