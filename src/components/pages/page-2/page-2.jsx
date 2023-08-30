@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import CheckboxGroup from "../../UI/checkboxGroup";
 import axios from "axios";
 import RadioGroup from "../../UI/radioGroup";
 

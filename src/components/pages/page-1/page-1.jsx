@@ -69,7 +69,7 @@ const Page1 = () => {
   }, []);
 
   const save = () => {
-    localStorage.setItem("sitePreparation", JSON.stringify(jobs))
+    localStorage.setItem("sitePreparationWorks", JSON.stringify(jobs))
     localStorage.setItem("worksOnTheSite", JSON.stringify(worksSite))
     localStorage.setItem("designAndProjectOfTheHouse", JSON.stringify(design))
   }
