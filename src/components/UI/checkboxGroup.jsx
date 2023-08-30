@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import OptionalWork from "./optionalWork";
 
-const CheckboxGroup = ({list}) => {
+const CheckboxGroup = ({list, onChange}) => {
   const [change, setChange] = useState(0);
   const changeCrutch = () => {
     setChange(change + 1)
@@ -18,6 +18,19 @@ const CheckboxGroup = ({list}) => {
     res.checked = !res.checked;
 
     changeCrutch(); // wtf ???
+
+    let intermediateCost = 0;
+    if (res.checked) {
+      for (let work of res.works) {
+        intermediateCost += work.price;
+      }
+    } else {
+      for (let work of res.works) {
+        intermediateCost -= work.price;
+      }
+    }
+    console.log(intermediateCost);
+    onChange(intermediateCost);
   }
 
   return (
