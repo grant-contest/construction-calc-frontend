@@ -7,6 +7,7 @@ import {Route, Routes} from "react-router-dom";
 import Navbar from "./components/navbar/navbar";
 import Page2 from "./components/pages/page-2/page-2";
 
+
 function App() {
   return (
     <div>
