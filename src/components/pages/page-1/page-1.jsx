@@ -163,18 +163,6 @@ const Page1 = ({rec, setRec}) => {
     return intermediateCost;
   }
 
-  const decrementIntermediateCost = (list) => {
-    let intermediateCost = 0;
-    for (let item of list) {
-      if (item.checked) {
-        for (let work of item.works) {
-          intermediateCost -= work.price;
-        }
-      }
-    }
-    return intermediateCost;
-  }
-
   return (
     <div className="flex justify-center">
       <div className="w-11/12">
