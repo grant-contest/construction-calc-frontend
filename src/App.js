@@ -8,10 +8,13 @@ import Navbar from "./components/navbar/navbar";
 import Page2 from "./components/pages/page-2/page-2";
 import Page1 from "./components/pages/page-1/page-1";
 import Page3 from "./components/pages/page-3/page-3";
+import FinalPage from "./components/pages/final/final-page";
 
 
 function App() {
   const [recommendation, setRecommendation] = useState();
+  const [pageCost, setPageCost] = useState();
+
 
   return (
     <div>
@@ -31,7 +34,7 @@ function App() {
         <Route path="/page-7" element={<p>Page 7</p>}/>
         <Route path="/page-8" element={<p>Page 8</p>}/>
         <Route path="/page-9" element={<p>Page 9</p>}/>
-        <Route path="/result" element={<p>Итог</p>}/>
+        <Route path="/result" element={<FinalPage rec={recommendation} setRec={setRecommendation} page9CostParam={pageCost}/>}/>
       </Routes>
 
       <Footer/>

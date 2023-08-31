@@ -1,11 +1,21 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
 
-const NavbarButton = ({page, url, completed}) => {
+const NavbarButton = ({page, pageNumber, url, completed, onChange}) => {
+  const clicked = () => {
+    onChange(pageNumber);
+    setComplete(true);
+  }
+
+  const [complete, setComplete] = useState(completed);
+  useEffect(() => {
+    setComplete(completed);
+  }, [completed]);
+
   return (
     <Link to={url}>
-      {completed ?
-        <div className="border border-light-green rounded-full">
+      {complete ?
+        <div className="border border-light-green rounded-full" onClick={clicked}>
           <div className="border border-white rounded-full">
             <div
               className="cursor-pointer bg-light-green rounded-full w-8 h-8 flex justify-center items-center text-xs">
@@ -18,7 +28,7 @@ const NavbarButton = ({page, url, completed}) => {
           </div>
         </div>
         :
-        <div className="border border-gray-300 rounded-full">
+        <div className="border border-gray-300 rounded-full" onClick={clicked}>
           <div className="border border-white rounded-full">
             <div
               className="cursor-pointer bg-gray-300 rounded-full w-8 h-8 flex justify-center items-center text-xs">

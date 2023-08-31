@@ -114,6 +114,7 @@ const Page1 = ({rec, setRec}) => {
     step1Join(jobs, worksSite, design);
 
     localStorage.setItem("step1", JSON.stringify(step1))
+    localStorage.setItem("page-1-cost", JSON.stringify(cost))
 
     axios.post("http://localhost:8000/api/recommedation-system/step2", {
       homeParams,
