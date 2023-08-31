@@ -3,7 +3,7 @@ import RadioGroup from "../../UI/radioGroup";
 import {Link} from "react-router-dom";
 import axios from "axios";
 
-const Page6 = ({rec, setRec}) => {
+const Page6 = ({rec, setRec, onActive}) => {
   const [windowMaterial, setWndowMaterial] = useState([]);
   const [windowType, setWindowType] = useState([]);
   const [doorMaterial, setDoorMaterial] = useState([]);
@@ -133,6 +133,8 @@ const Page6 = ({rec, setRec}) => {
         localStorage.setItem("rec-step6", JSON.stringify(response.data))
         setRec(response.data)
       })
+
+    onActive(7);
   }
 
   let step6 = {};

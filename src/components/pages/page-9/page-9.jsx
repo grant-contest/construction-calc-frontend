@@ -4,7 +4,7 @@ import RadioGroup from "../../UI/radioGroup";
 import {Link} from "react-router-dom";
 import axios from "axios";
 
-const Page9 = ({rec, setRec, setPageCost}) => {
+const Page9 = ({rec, setRec, setPageCost, onActive}) => {
   const [ceilCovering, setCeilCovering] = useState([]);
   const [floorCovering, setFloorCovering] = useState([]);
   const [wallDecoration, setWallDecoration] = useState([]);
@@ -111,6 +111,8 @@ const Page9 = ({rec, setRec, setPageCost}) => {
     step9Join(ceilCovering, floorCovering, wallDecoration);
     localStorage.setItem("step9", JSON.stringify(step9));
     setPageCost(cost);
+
+    onActive(10);
   }
 
   let step9 = {};

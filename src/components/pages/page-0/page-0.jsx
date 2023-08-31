@@ -2,7 +2,7 @@ import React from 'react';
 import HomeParameters from "./homeParameters";
 import axios from "axios";
 
-const Page0 = ({setRec}) => {
+const Page0 = ({setRec, onActive}) => {
   const homeParams = {
     homeSquare: 0,
     areaSquare: 0,
@@ -36,7 +36,7 @@ const Page0 = ({setRec}) => {
     <div className="flex justify-center">
       <div className="w-9/12">
         <p className="text-2xl font-medium">Калькулятор строительства</p>
-          <HomeParameters onChange={homeParamsHandler}/>
+          <HomeParameters onChange={homeParamsHandler} onActive={onActive}/>
       </div>
     </div>
   );

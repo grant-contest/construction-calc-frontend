@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import CheckboxGroup from "../../UI/checkboxGroup";
 import axios from "axios";
 
-const Page7 = ({rec, setRec}) => {
+const Page7 = ({rec, setRec, onActive}) => {
   const [cost, setCost] = useState(0);
   let intermediateCost = 0;
 
@@ -209,6 +209,8 @@ const Page7 = ({rec, setRec}) => {
         setRec(response.data)
         console.log(response.data)
       })
+
+    onActive(8);
   }
 
   let step7 = {}

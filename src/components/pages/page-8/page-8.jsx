@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import RadioGroup from "../../UI/radioGroup";
 import axios from "axios";
 
-const Page8 = ({rec, setRec}) => {
+const Page8 = ({rec, setRec, onActive}) => {
   const [cost, setCost] = useState(0);
   let intermediateCost = 0;
 
@@ -110,6 +110,8 @@ const Page8 = ({rec, setRec}) => {
         setRec(response.data)
         console.log(response.data)
       })
+
+    onActive(9);
   }
 
   let step8 = {}

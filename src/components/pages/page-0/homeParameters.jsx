@@ -5,7 +5,7 @@ import axios from "axios";
 import Input from "../../UI/input";
 import {Link} from "react-router-dom";
 
-const HomeParameters = ({onChange}) => {
+const HomeParameters = ({onChange, onActive}) => {
   const [regions, setRegions] = useState([]);
 
   const [homeSquare, setHomeSquare] = useState(0);
@@ -72,6 +72,8 @@ const HomeParameters = ({onChange}) => {
       budgetFrom,
       budgetUpto,
     });
+
+    onActive(1);
   }
 
   return (
