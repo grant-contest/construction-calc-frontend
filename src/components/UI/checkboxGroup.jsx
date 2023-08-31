@@ -39,7 +39,7 @@ const CheckboxGroup = ({list, onChange}) => {
           list.map((item) =>
             <div key={item.id}>
               {item.isRecommended ?
-                <div className="border border-orange-800 rounded-xl h-20 px-8 mx-2 my-2 flex justify-between items-center"
+                <div className="border border-light-green rounded-xl h-20 px-8 mx-2 my-2 flex justify-between items-center"
                      id={item.id}
                      onClick={checkboxClicked}
                 >
@@ -53,6 +53,7 @@ const CheckboxGroup = ({list, onChange}) => {
                     </div>
                     <img src={item.image} alt=""/>
                   </div>
+                  <div className="text-light-green">Рекомендовано</div>
                   <p>{item.price} ₽</p>
                 </div>
                 :

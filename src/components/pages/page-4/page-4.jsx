@@ -10,7 +10,6 @@ const Page4 = ({rec, setRec}) => {
   let intermediateCost = 0;
 
   useEffect(() => {
-    console.log(rec)
     const storageSlopes = JSON.parse(localStorage.getItem("slopes"));
 
     if (storageSlopes) {
@@ -25,8 +24,6 @@ const Page4 = ({rec, setRec}) => {
     } else {
       axios.get('http://localhost:8000/api/number-of-stingrays')
         .then((response) => {
-          console.log(response.data)
-
           if (rec) {
             for (let slope of response.data) {
               slope.isRecommended = Number(slope.id) === rec.slopesNumber;
@@ -84,8 +81,8 @@ const Page4 = ({rec, setRec}) => {
       step4,
     })
       .then((response) => {
-        // localStorage.setItem("rec-step5", JSON.stringify(response.data))
-        // setRec(response.data)
+        localStorage.setItem("rec-step5", JSON.stringify(response.data))
+        setRec(response.data)
         console.log(response.data)
       })
   }
