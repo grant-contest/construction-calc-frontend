@@ -97,7 +97,7 @@ const HomeParameters = ({onChange}) => {
           <Input placeholder={"Бюджет от"} onChange={budgetFromHandler} initValue={budgetFrom}/>
           <Input placeholder={"до, руб"} onChange={budgetUptoHandler} initValue={budgetUpto}/>
         </div>
-        <Link to={"page-1"}>
+        <Link to={"/page-1"}>
           <button className="rounded-full bg-light-green text-white px-4 py-2 mt-2 mb-4" onClick={saveParams}>Рассчитать
           </button>
         </Link>

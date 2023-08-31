@@ -2,25 +2,38 @@ import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import RadioGroup from "../../UI/radioGroup";
 
-const Page2 = () => {
+const Page2 = ({rec, setRec}) => {
   const [bases, setBases] = useState([]);
   const [cost, setCost] = useState(0);
   let intermediateCost = 0;
 
   useEffect(() => {
-    const storageBases = localStorage.getItem("baseTypes");
+    const storageBases = JSON.parse(localStorage.getItem("baseTypes"));
+
     if (storageBases) {
-      setBases(JSON.parse(storageBases));
-      intermediateCost += incrementIntermediateCost(JSON.parse(storageBases));
+      if (rec) {
+        for (let base of storageBases) {
+          base.isRecommended = base.title === rec.foundationType;
+        }
+        localStorage.setItem("baseTypes", JSON.stringify(storageBases));
+      }
+      setBases(storageBases);
+      intermediateCost += incrementIntermediateCost(storageBases);
     } else {
       axios.get('http://localhost:8000/api/base-types')
         .then((response) => {
+          if (rec) {
+            for (let base of response.data) {
+              base.isRecommended = base.title === rec.foundationType;
+            }
+            localStorage.setItem("baseTypes", JSON.stringify(response.data));
+          }
           setBases(response.data);
         })
     }
 
     setCost(intermediateCost);
-  }, []);
+  }, [rec]);
 
   const save = () => {
     localStorage.setItem("baseTypes", JSON.stringify(bases))

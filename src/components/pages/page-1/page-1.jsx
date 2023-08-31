@@ -22,6 +22,7 @@
 import React, {useEffect, useState} from 'react';
 import CheckboxGroup from "../../UI/checkboxGroup";
 import axios from "axios";
+import {Link} from "react-router-dom";
 
 const Page1 = ({rec, setRec}) => {
   const [jobs, setJobs] = useState([]);
@@ -41,6 +42,7 @@ const Page1 = ({rec, setRec}) => {
         storageJobs[1].isRecommended = rec.sitePreparation.geodeticalWorks
         storageJobs[2].isRecommended = rec.sitePreparation.geologicalWorks
         storageJobs[3].isRecommended = rec.sitePreparation.cuttingBushesAndSmallForests || rec.sitePreparation.clearingTheSiteOfDebris;
+        localStorage.setItem("sitePreparationWorks", JSON.stringify(storageJobs));
       }
       setJobs(storageJobs);
       intermediateCost += incrementIntermediateCost(storageJobs);
@@ -52,6 +54,7 @@ const Page1 = ({rec, setRec}) => {
             response.data[1].isRecommended = rec.sitePreparation.geodeticalWorks
             response.data[2].isRecommended = rec.sitePreparation.geologicalWorks
             response.data[3].isRecommended = rec.sitePreparation.cuttingBushesAndSmallForests || rec.sitePreparation.clearingTheSiteOfDebris;
+            localStorage.setItem("sitePreparationWorks", JSON.stringify(response.data));
           }
           setJobs(response.data);
         })
@@ -62,14 +65,17 @@ const Page1 = ({rec, setRec}) => {
       if (rec) {
         storageWorksSite[0].isRecommended = rec.siteWorks.cameras
         storageWorksSite[1].isRecommended = rec.siteWorks.temporaryFence
+        localStorage.setItem("worksOnTheSite", JSON.stringify(storageWorksSite));
       }
       setWorksSite(storageWorksSite);
+      intermediateCost += incrementIntermediateCost(storageWorksSite);
     } else {
       axios.get('http://localhost:8000/api/works-on-the-site')
         .then((response) => {
           if (rec) {
             response.data[0].isRecommended = rec.siteWorks.cameras
             response.data[1].isRecommended = rec.siteWorks.temporaryFence
+            localStorage.setItem("worksOnTheSite", JSON.stringify(response.data));
           }
           setWorksSite(response.data);
         })
@@ -80,14 +86,17 @@ const Page1 = ({rec, setRec}) => {
       if (rec) {
         storageDesign[0].isRecommended = rec.houseDesignAndProject.homeProject
         storageDesign[1].isRecommended = rec.houseDesignAndProject.designProject
+        localStorage.setItem("designAndProjectOfTheHouse", JSON.stringify(storageDesign));
       }
       setDesign(storageDesign);
+      intermediateCost += incrementIntermediateCost(storageDesign);
     } else {
       axios.get('http://localhost:8000/api/design-and-project-of-the-house')
         .then((response) => {
           if (rec) {
             response.data[0].isRecommended = rec.houseDesignAndProject.homeProject
             response.data[1].isRecommended = rec.houseDesignAndProject.designProject
+            localStorage.setItem("designAndProjectOfTheHouse", JSON.stringify(response.data));
           }
           setDesign(response.data);
         })
@@ -111,7 +120,8 @@ const Page1 = ({rec, setRec}) => {
       step1,
     })
       .then((response) => {
-        console.log(response.data);
+        localStorage.setItem("rec-step2", JSON.stringify(response.data))
+        setRec(response.data)
       })
   }
 
@@ -173,12 +183,13 @@ const Page1 = ({rec, setRec}) => {
         <CheckboxGroup list={worksSite} onChange={calculateCost}/>
         <CheckboxGroup list={design} onChange={calculateCost}/>
 
-
-        <button className="rounded-full bg-light-green text-white px-4 py-2 mt-2 mb-4"
-                onClick={save}
-        >
-          Далее
-        </button>
+        <Link to={"/page-2"}>
+          <button className="rounded-full bg-light-green text-white px-4 py-2 mt-2 mb-4"
+                  onClick={save}
+          >
+            Далее
+          </button>
+        </Link>
       </div>
     </div>
   );

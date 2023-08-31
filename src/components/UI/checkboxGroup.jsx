@@ -6,7 +6,6 @@ const CheckboxGroup = ({list, onChange}) => {
   const changeCrutch = () => {
     setChange(change + 1)
   }
-  console.log(list)
 
   const checkboxClicked = (event) => {
     const cb = event.currentTarget.getElementsByTagName("input")

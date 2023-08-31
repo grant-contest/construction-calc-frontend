@@ -23,7 +23,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Page0 setRec={setRecommendation}/>}/>
         <Route path="/page-1" element={<Page1 rec={recommendation} setRec={setRecommendation}/>}/>
-        <Route path="/page-2" element={<Page2/>}/>
+        <Route path="/page-2" element={<Page2 rec={recommendation} setRec={setRecommendation}/>}/>
         <Route path="/page-3" element={<Page3/>}/>
         <Route path="/page-4" element={<p>Page 4</p>}/>
         <Route path="/page-5" element={<p>Page 5</p>}/>
