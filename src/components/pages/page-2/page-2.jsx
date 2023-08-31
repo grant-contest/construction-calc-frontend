@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import RadioGroup from "../../UI/radioGroup";
+import {Link} from "react-router-dom";
 
 const Page2 = ({rec, setRec}) => {
   const [bases, setBases] = useState([]);
@@ -51,7 +52,8 @@ const Page2 = ({rec, setRec}) => {
       step2,
     })
       .then((response) => {
-        console.log(response.data);
+        localStorage.setItem("rec-step3", JSON.stringify(response.data))
+        setRec(response.data)
       })
   }
 
@@ -66,7 +68,7 @@ const Page2 = ({rec, setRec}) => {
     }
   }
 
-    const calculateCost = (price) => {
+  const calculateCost = (price) => {
     setCost(cost + price);
   }
 
@@ -82,19 +84,6 @@ const Page2 = ({rec, setRec}) => {
     return intermediateCost;
   }
 
-  const decrementIntermediateCost = (list) => {
-    let intermediateCost = 0;
-    for (let item of list) {
-      if (item.checked) {
-        for (let work of item.works) {
-          intermediateCost -= work.price;
-        }
-      }
-    }
-    return intermediateCost;
-  }
-
-
   return (
     <div className="flex justify-center">
       <div className="w-11/12">
@@ -102,11 +91,13 @@ const Page2 = ({rec, setRec}) => {
 
         <RadioGroup list={bases} onChange={calculateCost}/>
 
-        <button className="rounded-full bg-light-green text-white px-4 py-2 mt-2 mb-4"
-                onClick={save}
-        >
-          Далее
-        </button>
+        <Link to={"/page-3"}>
+          <button className="rounded-full bg-light-green text-white px-4 py-2 mt-2 mb-4"
+                  onClick={save}
+          >
+            Далее
+          </button>
+        </Link>
       </div>
     </div>
   );
