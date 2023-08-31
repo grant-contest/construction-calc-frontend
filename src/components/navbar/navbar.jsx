@@ -3,7 +3,7 @@ import NavbarButton from "./navbarButton";
 import NavbarRow from "./navbarRow";
 import {useLocation, useParams} from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({active}) => {
   const [change, setChange] = useState(0);
   const changeCrutch = () => {
     setChange(change + 1)
@@ -59,6 +59,10 @@ const Navbar = () => {
     setCompletedList(completedList);
     changeCrutch()
   }
+
+  useEffect(() => {
+    clicked(active)
+  }, [active]);
 
   useEffect(() => {
     clicked(page)

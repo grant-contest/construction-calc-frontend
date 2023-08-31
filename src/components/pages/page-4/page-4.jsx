@@ -3,7 +3,7 @@ import RadioGroup from "../../UI/radioGroup";
 import {Link} from "react-router-dom";
 import axios from "axios";
 
-const Page4 = ({rec, setRec}) => {
+const Page4 = ({rec, setRec, onActive}) => {
   const [slopes, setSlopes] = useState([]);
   const [roof, setRoof] = useState([]);
   const [cost, setCost] = useState(0);
@@ -85,6 +85,8 @@ const Page4 = ({rec, setRec}) => {
         setRec(response.data)
         console.log(response.data)
       })
+
+    onActive(5);
   }
 
   let step4 = {}

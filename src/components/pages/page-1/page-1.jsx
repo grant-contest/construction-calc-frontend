@@ -24,7 +24,7 @@ import CheckboxGroup from "../../UI/checkboxGroup";
 import axios from "axios";
 import {Link} from "react-router-dom";
 
-const Page1 = ({rec, setRec}) => {
+const Page1 = ({rec, setRec, onActive}) => {
   const [jobs, setJobs] = useState([]);
   const [worksSite, setWorksSite] = useState([]);
   const [design, setDesign] = useState([]);
@@ -124,6 +124,8 @@ const Page1 = ({rec, setRec}) => {
         localStorage.setItem("rec-step2", JSON.stringify(response.data))
         setRec(response.data)
       })
+
+    onActive(2);
   }
 
   let step1 = {}

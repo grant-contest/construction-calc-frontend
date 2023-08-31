@@ -20,25 +20,26 @@ import Page8 from "./components/pages/page-8/page-8";
 function App() {
   const [recommendation, setRecommendation] = useState();
   const [pageCost, setPageCost] = useState();
+  const [active, setActive] = useState(0);
 
   return (
     <div>
       <Topbar/>
       <Header/>
 
-      <Navbar/>
+      <Navbar active={active}/>
 
       <Routes>
-        <Route path="/" element={<Page0 setRec={setRecommendation}/>}/>
-        <Route path="/page-1" element={<Page1 rec={recommendation} setRec={setRecommendation}/>}/>
-        <Route path="/page-2" element={<Page2 rec={recommendation} setRec={setRecommendation}/>}/>
-        <Route path="/page-3" element={<Page3 rec={recommendation} setRec={setRecommendation}/>}/>
-        <Route path="/page-4" element={<Page4 rec={recommendation} setRec={setRecommendation}/>}/>
-        <Route path="/page-5" element={<Page5 rec={recommendation} setRec={setRecommendation}/>}/>
-        <Route path="/page-6" element={<Page6 rec={recommendation} setRec={setRecommendation}/>}/>
-        <Route path="/page-7" element={<Page7 rec={recommendation} setRec={setRecommendation}/>}/>
-        <Route path="/page-8" element={<Page8 rec={recommendation} setRec={setRecommendation}/>}/>
-        <Route path="/page-9" element={<Page9 rec={recommendation} setRec={setRecommendation} setPageCost={setPageCost}/>}/>
+        <Route path="/" element={<Page0 setRec={setRecommendation} onActive={setActive}/>}/>
+        <Route path="/page-1" element={<Page1 rec={recommendation} setRec={setRecommendation} onActive={setActive}/>}/>
+        <Route path="/page-2" element={<Page2 rec={recommendation} setRec={setRecommendation} onActive={setActive}/>}/>
+        <Route path="/page-3" element={<Page3 rec={recommendation} setRec={setRecommendation} onActive={setActive}/>}/>
+        <Route path="/page-4" element={<Page4 rec={recommendation} setRec={setRecommendation} onActive={setActive}/>}/>
+        <Route path="/page-5" element={<Page5 rec={recommendation} setRec={setRecommendation} onActive={setActive}/>}/>
+        <Route path="/page-6" element={<Page6 rec={recommendation} setRec={setRecommendation} onActive={setActive}/>}/>
+        <Route path="/page-7" element={<Page7 rec={recommendation} setRec={setRecommendation} onActive={setActive}/>}/>
+        <Route path="/page-8" element={<Page8 rec={recommendation} setRec={setRecommendation} onActive={setActive}/>}/>
+        <Route path="/page-9" element={<Page9 rec={recommendation} setRec={setRecommendation} setPageCost={setPageCost} onActive={setActive}/>}/>
         <Route path="/result" element={<FinalPage rec={recommendation} setRec={setRecommendation} page9CostParam={pageCost}/>}/>
       </Routes>
 
